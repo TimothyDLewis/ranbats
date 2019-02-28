@@ -61,4 +61,18 @@ class User extends EloquentUser {
     public function reminder(){
         return $this->hasOne(Reminder::class);
     }
+
+    public function isActivated() {
+        $activationRecord = $this->activation;
+
+        if (!$activationRecord) {
+            return false;
+        } else {
+            if ($activationRecord->completed == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
 }

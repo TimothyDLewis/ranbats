@@ -34,6 +34,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \RanBats\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \RanBats\Http\Middleware\Globals::class
         ],
 
         'api' => [
@@ -56,5 +57,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \RanBats\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        'sentinel.auth' => \RanBats\Http\Middleware\Sentinel\Authenticate::class,
+        'sentinel.guest' => \RanBats\Http\Middleware\Sentinel\RedirectIfAuthenticated::class,
+
+        'sentinel.roles.admin' => \RanBats\Http\Middleware\Sentinel\Roles\Admin::class,
     ];
 }
