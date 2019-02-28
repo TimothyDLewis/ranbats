@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder {
      */
     public function run(){
         $this->call(InitialSeeder::class);
+        $this->call(GameSeeder::class);
+        
         if(env("APP_ENV", "production") == "local"){
         	$this->call(TestSeeder::class);
         }

@@ -31,3 +31,9 @@ Route::group(["middleware" => "sentinel.guest"], function(){
 	Route::get("/reset/{code}", "AuthController@getReset");
 	Route::post("/reset/{code}", "AuthController@postReset");
 });
+
+Route::group(["prefix" => "games"], function(){
+	Route::get("/", "GameController@getIndex");
+
+	Route::get("/{slug}", "GameController@getDetail");
+});

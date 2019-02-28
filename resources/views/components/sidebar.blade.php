@@ -3,6 +3,18 @@
 		&nbsp; <!-- TODO: Addming Image -->
 	</a>
 </div>
+<ul class="nav">
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url("/games") }}">
+			<span class="no-icon">Games</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url("/tournaments") }}">
+			<span class="no-icon">Tournaments</span>
+		</a>
+	</li>
+</ul>
 <hr style="border-top: 1px solid rgba(255, 255, 255, 0.2);"/>
 @if($authUser)
 @if($authUser->inRole("superuser") || $authUser->inRole("admin"))

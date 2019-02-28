@@ -1,7 +1,7 @@
 @extends("layouts.default")
 
 @section("title")
-- Login
+:: Forgot Password
 @endsection
 
 @section("styles")
