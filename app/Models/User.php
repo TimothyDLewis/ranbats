@@ -2,28 +2,63 @@
 
 namespace RanBats\Models;
 
+use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Sentinel;
+use Illuminate\Auth\Authenticatable;
+use Carbon\Carbon;
 
-class User extends Authenticatable
-{
+class User extends EloquentUser {
+
     use Notifiable;
+    use SoftDeletes;
+    use Authenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+   	protected $connection = "mysql";
+    protected $table = "users";
+    protected $primaryKey = "id";
+
+    protected $appends = [
+    	
+    ];
+
+    protected $guarded = [];
     protected $fillable = [
-        'name', 'email', 'password',
+        "email",
+        "password",
+        "first_name",
+        "last_name"
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        "password",
+        "permissions",
+        "last_login",
+        "created_at",
+        "updated_at",
+        "deleted_at"
     ];
+
+    protected $dates = [
+        "last_login",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+    ];
+
+    public $timestamps = true;
+
+    // Relationships
+    public function roles(){
+        return $this->belongsToMany(Role::class, "role_users");
+    }
+
+    public function activation(){
+    	return $this->hasOne(Activation::class);
+    }
+
+    public function reminder(){
+        return $this->hasOne(Reminder::class);
+    }
 }
