@@ -16,4 +16,4 @@ return [
 		"wii" => "Nintendo Wii",
 		"wiiu" => "Nintendo Wii U"
 	]
-]
+];

@@ -13,11 +13,12 @@ class RecordFetcher {
 		$this->currentTimestamp = Carbon::now();
 	}
 
-	public function getGames(){
-		return Game::orderBy("name")->get();
+	public function getGames($withs = []){
+		return Game::orderBy("name")->with($withs)->get();
 	}
 
-	public function getGameBySlug($slug){
-		return Game::where("slug", "=", $slug)->first();
+	public function getGameBySlug($slug, $withs = []){
+
+		return Game::where("slug", "=", $slug)->with($withs)->first();
 	}
 }
