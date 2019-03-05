@@ -12,7 +12,7 @@
 */
 
 Route::get("/test", function(){
-	
+
 });
 
 Route::get("/", "DefaultController@getIndex");
@@ -36,4 +36,9 @@ Route::group(["prefix" => "games"], function(){
 	Route::get("/", "GameController@getIndex");
 
 	Route::get("/{slug}", "GameController@getDetail");
+});
+
+Route::group(["middleware" => "sentinel.auth"], function(){
+	Route::get("/profile", "AccountController@getProfile");
+	Route::post("/profile", "AccountController@postProfile");
 });

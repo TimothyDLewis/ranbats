@@ -19,6 +19,10 @@ class User extends EloquentUser {
     protected $table = "users";
     protected $primaryKey = "id";
 
+    public function player(){
+    	return $this->belongsTo(Player::class);
+    }
+
     public function roles(){
         return $this->belongsToMany(Role::class, "role_users");
     }

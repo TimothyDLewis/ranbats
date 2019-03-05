@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12 form-group">
+						<div class="col-sm-12">
 							<button type="submit" class="btn btn-secondary btn-fill mr-2">Send Password Reset</button>
 							<a href="{{ url("/") }}" class="btn btn-secondary">Cancel</a>
 						</div>

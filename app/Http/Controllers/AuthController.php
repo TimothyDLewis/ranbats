@@ -3,6 +3,7 @@
 namespace RanBats\Http\Controllers;
 
 use Sentinel;
+use Validator;
 
 use RanBats\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -33,7 +34,7 @@ class AuthController extends Controller {
 			"password" => "required|confirmed"
 		];
 
-		$validator = \Validator::make($request->all(), $rules);
+		$validator = Validator::make($request->all(), $rules);
 
 		if($validator->passes()){
 			\DB::beginTransaction();

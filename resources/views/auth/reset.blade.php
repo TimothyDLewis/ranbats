@@ -44,7 +44,7 @@ Reset Password
 						</div>
     				</div>
 					<div class="row">
-						<div class="col-sm-12 form-group">
+						<div class="col-sm-12">
 							<button type="submit" class="btn btn-secondary btn-fill">Reset Password</button>
 						</div>
 					</div>

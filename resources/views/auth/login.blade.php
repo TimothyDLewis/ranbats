@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 form-group">
+						<div class="col-12">
 							<button type="submit" class="btn btn-secondary btn-fill mr-2">Login</button>
 							<a href="{{ url("/remind") }}" class="btn btn-secondary">Forgot Password</a>
 						</div>

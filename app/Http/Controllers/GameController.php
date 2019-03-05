@@ -14,6 +14,12 @@ class GameController extends Controller {
 		$this->recordFetcher = new RecordFetcher();
 	}
 
+	private function constructWiths($additional = []){
+		return array_merge($additional, [
+			
+		]);
+	}
+
 	public function getIndex(){
 		$games = $this->recordFetcher->getGames();
 

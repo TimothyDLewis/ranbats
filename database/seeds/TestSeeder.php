@@ -7,6 +7,7 @@ use RanBats\Classes\Slugger;
 
 use RanBats\Models\Role;
 use RanBats\Models\User;
+use RanBats\Models\Player;
 
 class TestSeeder extends Seeder {
 	private $slugger = null;
@@ -58,6 +59,14 @@ class TestSeeder extends Seeder {
 			"created_at" => date("Y-m-d H:i:s"),
 			"updated_at" => date("Y-m-d H:i:s"),
 		]);
+
+		$userPlayer = Player::create([
+			"name" => "User",
+			"prefix" => "RNBT",
+		]);
+
+		$userUser->player_id = $userPlayer->id;
+		$userUser->save();
 
 		$this->command->info("Created and Activated User:".$userUser->email." (".$userUser->roles->first()->name.")");
     }
