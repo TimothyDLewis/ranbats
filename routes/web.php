@@ -12,7 +12,7 @@
 */
 
 Route::get("/test", function(){
-
+	
 });
 
 Route::get("/", "DefaultController@getIndex");

@@ -10,8 +10,8 @@
 		</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="{{ url("/tournaments") }}">
-			<span class="no-icon">Tournaments</span>
+		<a class="nav-link" href="{{ url("/series") }}">
+			<span class="no-icon">Series</span>
 		</a>
 	</li>
 </ul>

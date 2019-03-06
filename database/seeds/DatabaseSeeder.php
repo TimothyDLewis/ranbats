@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
         
         if(env("APP_ENV", "production") == "local"){
         	$this->call(TestSeeder::class);
+        	$this->call(SeriesSeeder::class);
         }
     }
 }
