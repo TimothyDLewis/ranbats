@@ -20,9 +20,15 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
+					@if(count($games) == 0)
+					<div class="col-12">
+						<h4>No Games to Display...</h4>
+					</div>
+					@else
 					@foreach($games AS $game)
 					@include("components.game-card", ["game" => $game])
 					@endforeach
+					@endif
 				</div>
 			</div>
 		</div>

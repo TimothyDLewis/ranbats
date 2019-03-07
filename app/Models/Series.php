@@ -31,6 +31,22 @@ class Series extends Model {
 		return null;
 	}
 
+	public function renderDateRange(){
+		if($this->start_date){
+			if($this->start_date == $this->end_date){
+				return $this->start_date->format("M. jS, Y");
+			} else {
+				return $this->start_date->format("M. jS, Y").'<br/><em class="text-muted">to</em><br/>'.$this->end_date->format("M. jS, Y");;
+			}
+		} else {
+			return '<em class="text-muted">Unavailable</em>';
+		}
+	}
+
+	public function game(){
+		return $this->belongsTo(Game::class);
+	}
+
 	public function tournaments(){
 		return $this->hasMany(Tournament::class)->orderBy("date");
 	}

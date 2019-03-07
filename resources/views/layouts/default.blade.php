@@ -35,6 +35,11 @@
 		.alert button.close {
 			background-color: inherit;
 		}
+
+		.rank-col {
+			width: 1%;
+			min-width: 50px;
+		}
 	</style>
 	@yield("styles")
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -66,7 +71,7 @@
 				</div>
 			</div>
 			<footer class="footer">
-                <div class="container-fluid">
+                <div class="container-fluid" style="display: none;">
                     <nav class="navbar">
                         <p class="navbar-static-text">
                         	<span class="d-block d-sm-none">XS</span>

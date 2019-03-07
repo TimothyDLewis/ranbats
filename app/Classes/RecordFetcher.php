@@ -2,8 +2,10 @@
 
 namespace RanBats\Classes;
 
-use RanBats\Models\Game;
 use Carbon\Carbon;
+
+use RanBats\Models\Game;
+use RanBats\Models\Series;
 
 class RecordFetcher {
 
@@ -18,7 +20,14 @@ class RecordFetcher {
 	}
 
 	public function getGameBySlug($slug, $withs = []){
-
 		return Game::where("slug", "=", $slug)->with($withs)->first();
+	}
+
+	public function getSeries($withs = []){
+		return Series::orderBy("name")->with($withs)->get();
+	}
+
+	public function getSeriesBySlug($slug, $withs = []){
+		return Series::where("slug", "=", $slug)->with($withs)->first();
 	}
 }

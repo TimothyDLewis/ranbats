@@ -2,6 +2,8 @@
 
 namespace RanBats\Http\Controllers;
 
+use Sentinel;
+
 use RanBats\Http\Controllers\Controller;
 use RanBats\Classes\RecordFetcher;
 
@@ -15,15 +17,24 @@ class GameController extends Controller {
 	}
 
 	private function constructWiths($additional = []){
+		$user = Sentinel::getUser();
+
+		$showAdminControls = false;
+		if($user && ($user->inRole("super-user") || $user->inRole("admin"))){
+			$showAdminControls = true;
+		}
+
 		return array_merge($additional, [
-			
+			"showAdminControls" => $showAdminControls
 		]);
 	}
 
-	public function getIndex(){
+	public function getGames(){
 		$games = $this->recordFetcher->getGames();
 
-		return view("games.index")->with(["games" => $games]);
+		return view("games.index")->with($this->constructWiths([
+			"games" => $games
+		]));
 	}
 
 	public function getDetail($slug){
@@ -34,6 +45,8 @@ class GameController extends Controller {
 			return redirect("/games")->with(["feedback" => $feedback]);
 		}
 
-		return view("games.detail")->with(["game" => $game]);
+		return view("games.detail")->with($this->constructWiths([
+			"game" => $game
+		]));
 	}
 }

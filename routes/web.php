@@ -16,7 +16,7 @@ Route::get("/test", function(){
 });
 
 Route::get("/", "DefaultController@getIndex");
-	
+
 Route::any("/logout", "AuthController@anyLogout");
 Route::group(["middleware" => "sentinel.guest"], function(){
 	Route::get("/register", "AuthController@getRegister");
@@ -33,9 +33,25 @@ Route::group(["middleware" => "sentinel.guest"], function(){
 });
 
 Route::group(["prefix" => "games"], function(){
-	Route::get("/", "GameController@getIndex");
+	Route::get("/", "GameController@getGames");
 
 	Route::get("/{slug}", "GameController@getDetail");
+});
+
+Route::group(["prefix" => "series"], function(){
+	Route::get("/", "SeriesController@getSeries");
+
+	Route::group(["middleware" => ["sentinel.auth", "sentinel.roles.admin"]], function(){
+		Route::get("/create", "SeriesController@getCreate");
+	});
+
+	Route::group(["prefix" => "{seriesSlug}"],function(){
+		Route::get("/","SeriesController@getDetail");
+
+		Route::group(["prefix" => "{tournamentSlug}"], function(){
+			Route::get("/", "TournamentController@getDetail");
+		});
+	});
 });
 
 Route::group(["middleware" => "sentinel.auth"], function(){

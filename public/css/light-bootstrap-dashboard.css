@@ -1798,7 +1798,7 @@ fieldset[disabled] .form-control {
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
-    padding: 12px 8px;
+    padding: 12px 12px;
     vertical-align: middle;
 }
 
@@ -1808,7 +1808,7 @@ fieldset[disabled] .form-control {
     text-transform: uppercase;
     color: #9A9A9A;
     font-weight: 400;
-    padding-bottom: 5px;
+    /*padding-bottom: 5px;*/
     border-top: none !important;
     border-bottom: none;
     text-align: left !important;
@@ -2970,7 +2970,7 @@ Copyright (c) 2015 Daniel Eden
 .card .table tbody td:last-child,
 .card .table thead th:last-child {
     padding-right: 15px;
-    display: inline-flex;
+    /*display: inline-flex;*/
 }
 
 .card .alert {

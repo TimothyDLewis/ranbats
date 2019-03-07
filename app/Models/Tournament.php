@@ -13,6 +13,10 @@ class Tournament extends Model {
 	protected $table = "tournaments";
 	protected $primaryKey = "id";
 
+	protected $dates = [
+		"date"
+	];
+
 	public function series(){
 		return $this->belongsTo(Series::class);
 	}

@@ -49,6 +49,15 @@ class SeriesSeeder extends Seeder {
 
 		$this->command->info("Created Tournament: ".$week2->name);
 
+		$week3 = Tournament::create([
+			"series_id" => $unistSeason1->id,
+			"name" => "Week 3",
+			"slug" => $this->slugger->sluggify("Week 3"),
+			"date" => Carbon::parse("2019-03-13")
+		]);
+
+		$this->command->info("Created Tournament: ".$week3->name);
+
 		$player = Player::create([
 			"name" => "TENMA"
 		]);
