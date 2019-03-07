@@ -18,7 +18,7 @@ class Tournament extends Model {
 	}
 
 	public function entrants(){
-		return $this->belongsToMany(Player::class, "tournament_standings")
+		return $this->belongsToMany(Player::class, "tournament_standings", "tournament_id", "player_id")
 		->withPivot(["wins", "losses", "ties", "points"]);
 	}
 }

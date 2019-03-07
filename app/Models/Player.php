@@ -18,12 +18,12 @@ class Player extends Model {
     }
 
     public function series(){
-    	return $this->belongsToMany(Series::class, "series_standings")
+    	return $this->belongsToMany(Series::class, "series_standings", "player_id", "series_id")
     	->withPivot(["wins", "losses", "ties", "points"]);
     }
 
     public function tournaments(){
-    	return $this->belongsToMany(Tournament::class, "tournament_standings")
+    	return $this->belongsToMany(Tournament::class, "tournament_standings", "player_id", "tournament_id")
     	->withPivot(["wins", "losses", "ties", "points"]);
     }
 }
