@@ -64,11 +64,34 @@
 			</div>
 			<div class="card-body table-responsive">
 				<table class="table table-bordered mb-1">
+					<form id="standingsForm" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="standingsSort"/>
+						<input type="hidden" name="standingsOrder"/>
+					</form>
+					<ul class="nav nav-tabs nav-justified standingsTabs">
+						@foreach(["points", "wins", "losses", "ties"] AS $standingsTab)
+						<li class="nav-item" data-sort="{{ $standingsTab }}">
+							@if($standingsSort == $standingsTab)
+							<a class="nav-link active" href="#">
+								{{ ucfirst($standingsTab) }}
+								@if($standingsOrder == "ASC")
+								<span class="fa fa-caret-up"></span>
+								@else
+								<span class="fa fa-caret-down"></span>
+								@endif
+							</a> 
+							@else
+							<a class="nav-link" href="#">{{ ucfirst($standingsTab) }}</a> 
+							@endif
+						</li>
+						@endforeach
+					</ul>
 					<thead class="thead-light">
 						<tr>
 							<th class="rank-col"></th>
 							<th>Player</th>
-							<th>Points</th>
+							<th>{{ ucfirst($standingsSort) }}</th>
 							@foreach($series->tournaments AS $tournament)
 							<th>{{ $tournament->name }}</th>
 							@endforeach
@@ -85,7 +108,7 @@
 						<?php $rank = 0; $previous = null; ?>
 						@foreach($series->entrants AS $entrant)
 						<?php if($previous !== $entrant->pivot->points){ $rank++; } $previous = $entrant->pivot->points; ?>
-						@include("components.standings-row", ["player" => $entrant])
+						@include("components.standings-row", ["player" => $entrant, "column" => $standingsSort])
 						@endforeach
 						@endif
 					</tbody>
@@ -94,4 +117,33 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section("scripts")
+<script type="text/javascript">
+	let oldSort = "{{ $standingsSort }}";
+	let oldOrder = "{{ $standingsOrder }}";
+
+	$(document).ready(function(){
+		$(".standingsTabs").find(".nav-item").on("click", function(e){
+			e.preventDefault();
+
+			let newSort = $(this).attr("data-sort");
+			let newOrder = null;
+
+			if(newSort != oldSort){
+				if(newSort == "losses"){
+					newOrder = "ASC";
+				} else {
+					newOrder = "DESC";
+				}
+
+				$("input[name=standingsSort]").val(newSort);
+				$("input[name=standingsOrder]").val(newOrder);
+
+				$("#standingsForm").submit();
+			}
+		});
+	});
+</script>
 @endsection

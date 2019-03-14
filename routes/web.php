@@ -48,6 +48,7 @@ Route::group(["prefix" => "series"], function(){
 
 	Route::group(["prefix" => "{seriesSlug}"],function(){
 		Route::get("/","SeriesController@getDetail");
+		Route::post("/", "SeriesController@postDetail");
 		Route::get("/create-tournament", "TournamentController@getCreateTournament");
 
 		Route::group(["prefix" => "{tournamentSlug}"], function(){

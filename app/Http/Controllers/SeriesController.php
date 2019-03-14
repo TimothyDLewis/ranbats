@@ -51,8 +51,11 @@ class SeriesController extends Controller {
 	}
 
 	public function getDetail($seriesSlug){
-		$series = $this->recordFetcher->getSeriesBySlug($seriesSlug, ["game", "tournaments", "entrants" => function($subQuery){
-			$subQuery->with(["tournaments"])->orderBy("points", "DESC")->orderBy("name");
+		$standingsSort = session()->get("standingsSort", "points");
+		$standingsOrder = session()->get("standingsOrder", "DESC");
+
+		$series = $this->recordFetcher->getSeriesBySlug($seriesSlug, ["game", "tournaments", "entrants" => function($subQuery) use($standingsSort, $standingsOrder){
+			$subQuery->with(["tournaments"])->orderBy($standingsSort, $standingsOrder)->orderBy("name");
 		}]);
 
 		if(!$series){
@@ -61,7 +64,22 @@ class SeriesController extends Controller {
 		}
 
 		return view("series.detail")->with($this->constructWiths([
-			"series" => $series
+			"series" => $series,
+			"standingsSort" => $standingsSort,
+			"standingsOrder" => $standingsOrder
 		]));
+	}
+
+	public function postDetail(Request $request, $seriesSlug){
+		$series = $this->recordFetcher->getSeriesBySlug($seriesSlug);
+		if(!$series){
+			$feedback = new FeedbackObject("danger", "fa fa-times-circle", "Unable to Find Series from Slug <strong>".$seriesSlug."</strong>.<br/>Please try again.");
+			return redirect("/series")->with(["feedback" => $feedback]);
+		}
+
+		session()->put("standingsSort", $request->input("standingsSort", "name"));
+		session()->put("standingsOrder", $request->input("standingsOrder", "DESC"));
+
+		return redirect("/series/".$seriesSlug);
 	}
 }

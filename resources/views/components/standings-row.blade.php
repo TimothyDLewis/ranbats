@@ -9,7 +9,7 @@
 		{{ $player->name }}
 	</td>
 	<td class="text-center">
-		<span class="badge badge-pill badge-light">{{ $player->pivot->points }}</span>
+		<span class="badge badge-pill badge-light">{{ $player->pivot->{$column} }}</span>
 	</td>
 	@foreach($series->tournaments AS $tournament)
 	@if($player->tournaments->contains($tournament))
@@ -17,7 +17,7 @@
 		return $pTournament->id == $tournament->id;
 	}); ?>
 	<td class="text-center">
-		<span class="badge badge-pill badge-light">{{ $pTournament->pivot->points }}</span>
+		<span class="badge badge-pill badge-light">{{ $pTournament->pivot->{$column} }}</span>
 	</td>
 	@else
 	<td class="text-center">
