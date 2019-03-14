@@ -20,13 +20,26 @@ class TournamentController extends Controller {
 		$user = Sentinel::getUser();
 
 		$showAdminControls = false;
-		if($user && ($user->inRole("super-user") || $user->inRole("admin"))){
+		if($user && ($user->inRole("superuser") || $user->inRole("admin"))){
 			$showAdminControls = true;
 		}
 
 		return array_merge($additional, [
 			"showAdminControls" => $showAdminControls
 		]);
+	}
+
+	public function getCreateTournament($seriesSlug){
+		$series = $this->recordFetcher->getSeriesBySlug($seriesSlug);
+
+		if(!$series){
+			$feedback = new FeedbackObject("danger", "fa fa-times-circle", "Unable to Find Series from Slug <strong>".$slug."</strong>.<br/>Please try again.");
+			return redirect("/series")->with(["feedback" => $feedback]);
+		}
+
+		return view("tournaments.create")->with($this->constructWiths([
+			"series" => $series,
+		]));
 	}
 
 	public function getDetail($seriesSlug, $tournamentSlug){

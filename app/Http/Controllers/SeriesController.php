@@ -6,6 +6,7 @@ use Sentinel;
 
 use RanBats\Http\Controllers\Controller;
 use RanBats\Classes\RecordFetcher;
+use Illuminate\Http\Request;
 
 use RanBats\Classes\FeedbackObject;
 
@@ -20,7 +21,7 @@ class SeriesController extends Controller {
 		$user = Sentinel::getUser();
 
 		$showAdminControls = false;
-		if($user && ($user->inRole("super-user") || $user->inRole("admin"))){
+		if($user && ($user->inRole("superuser") || $user->inRole("admin"))){
 			$showAdminControls = true;
 		}
 
@@ -37,13 +38,25 @@ class SeriesController extends Controller {
 		]));
 	}
 
-	public function getDetail($slug){
-		$series = $this->recordFetcher->getSeriesBySlug($slug, ["game", "tournaments", "entrants" => function($subQuery){
+	public function getCreate(){
+		$games = $this->recordFetcher->getGames();
+
+		return view("series.create")->with($this->constructWiths([
+			"games" => $games
+		]));
+	}
+
+	public function postCreate(Request $request){
+
+	}
+
+	public function getDetail($seriesSlug){
+		$series = $this->recordFetcher->getSeriesBySlug($seriesSlug, ["game", "tournaments", "entrants" => function($subQuery){
 			$subQuery->with(["tournaments"])->orderBy("points", "DESC")->orderBy("name");
 		}]);
 
 		if(!$series){
-			$feedback = new FeedbackObject("danger", "fa fa-times-circle", "Unable to Find Series from Slug <strong>".$slug."</strong>.<br/>Please try again.");
+			$feedback = new FeedbackObject("danger", "fa fa-times-circle", "Unable to Find Series from Slug <strong>".$seriesSlug."</strong>.<br/>Please try again.");
 			return redirect("/series")->with(["feedback" => $feedback]);
 		}
 

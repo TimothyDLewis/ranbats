@@ -40,6 +40,15 @@
 			width: 1%;
 			min-width: 50px;
 		}
+
+		.admin-control {
+			margin-top: -15px;
+		}
+
+		.action-col {
+			width: 1%;
+			min-width: 150px;
+		}
 	</style>
 	@yield("styles")
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

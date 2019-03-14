@@ -24,7 +24,7 @@
 		{!! $series->renderDateRange() !!}
 	</td>
 	@if($showAdminControls)
-	<td class="text-center">
+	<td class="text-center action-col">
 		<button type="button" class="btn btn-secondary btn-xs btn-fill btn-block"><i class="fa fa-pencil"></i> Edit</button>
 		<button type="button" class="btn btn-danger btn-xs btn-fill btn-block"><i class="fa fa-trash"></i> Delete</button>
 	</td>

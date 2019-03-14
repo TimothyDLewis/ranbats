@@ -43,13 +43,16 @@ Route::group(["prefix" => "series"], function(){
 
 	Route::group(["middleware" => ["sentinel.auth", "sentinel.roles.admin"]], function(){
 		Route::get("/create", "SeriesController@getCreate");
+		Route::post("/create", "SeriesController@postCreate");
 	});
 
 	Route::group(["prefix" => "{seriesSlug}"],function(){
 		Route::get("/","SeriesController@getDetail");
+		Route::get("/create-tournament", "TournamentController@getCreateTournament");
 
 		Route::group(["prefix" => "{tournamentSlug}"], function(){
 			Route::get("/", "TournamentController@getDetail");
+			Route::get("/add-player", "TournamentController@getAddPlayer");
 		});
 	});
 });

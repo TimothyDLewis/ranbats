@@ -40,14 +40,6 @@
 <ul class="nav">
 	<li class="nav-item">
 		<label class="ml-3" class="simple-text">
-			<strong>User Actions</strong>
-		</label>
-	</li>
-</ul>
-<hr style="border-top: 1px solid rgba(255, 255, 255, 0.2);"/>
-<ul class="nav">
-	<li class="nav-item">
-		<label class="ml-3" class="simple-text">
 			<strong>Welcome, {{ $authUser->first_name }}!</strong>
 		</label>
 	</li>

@@ -12,6 +12,13 @@
 @endsection
 
 @section("content")
+@if($showAdminControls)
+<div class="row form-group admin-control">
+	<div class="col-12 text-right">
+		<a href="{{ url("/series/".$series->slug."/".$tournament->slug."/add-player") }}" class="btn btn-info btn-sm btn-fill"><i class="fa fa-plus"></i> Add Player</a>
+	</div>
+</div>
+@endif
 <div class="row">
 	<div class="col-12">
 		<div class="card">
