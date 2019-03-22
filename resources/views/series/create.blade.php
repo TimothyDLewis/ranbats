@@ -24,10 +24,37 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h2 class="card-title">Create Series</h2>
+					<h3 class="mt-0">Create Series</h3>
 				</div>
 				<div class="card-body">
+					<div class="row">
+						<div class="col-12 form-group">
+							<label>Name</label>
+							<input type="text" name="name" class="form-control {{ $errors->has("slug") ? "is-invalid" : "" }}" value="{{ old("name") }}" />
+							<div class="invalid-feedback">
+								{{ $errors->first("slug") }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 form-group">
+							<label>Game</label>
+							<select class="form-control {{ $errors->has("game") ? "is-invalid" : "" }}" name="game">
+								<option value="">- Select a Game -</option>
+								@foreach($games AS $game)
+								<option value="{{ $game->id }}" {{ old("game") == $game->id ? "selected" : "" }}>{{ $game->name }}</option>
+								@endforeach
+							</select>
+							<div class="invalid-feedback">
+								{{ $errors->first("slug") }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 form-group">
 
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

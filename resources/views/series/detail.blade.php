@@ -23,7 +23,7 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h2 class="card-title">{{ $series->name }}</h2>
+				<h3 class="mt-0 card-title">{{ $series->name }}</h3>
 			</div>
 			<div class="card-body table-responsive">
 				<table class="table table-bordered mb-1">
@@ -61,7 +61,7 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h2 class="card-title">Standings</h2>
+				<h3 class="mt-0 card-title">Standings</h3>
 			</div>
 			<div class="card-body table-responsive">
 				<table class="table table-bordered mb-1">

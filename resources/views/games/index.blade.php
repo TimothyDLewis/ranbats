@@ -16,7 +16,7 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h2 class="card-title">Browse Games</h2>
+				<h3 class="mt-0 card-title">Browse Games</h3>
 			</div>
 			<div class="card-body">
 				<div class="row">

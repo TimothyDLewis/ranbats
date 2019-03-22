@@ -18,7 +18,7 @@ Reset Password
 			{{ csrf_field() }}
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Reset Password</h4>
+					<h3 class="mt-0 card-title">Reset Password</h3>
 				</div>
 				<div class="card-body">
 					<div class="row">

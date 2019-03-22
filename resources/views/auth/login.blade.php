@@ -18,7 +18,7 @@
 			{{ csrf_field() }}
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Login</h4>
+					<h3 class="mt-0 card-title">Login</h3>
 				</div>
 				<div class="card-body">
 					<div class="row">
