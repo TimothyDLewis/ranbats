@@ -17,12 +17,16 @@ class Tournament extends Model {
 		"date"
 	];
 
+	public function printFormat(){
+		return ucwords(str_replace("_", " ", $this->format));
+	}
+
 	public function series(){
 		return $this->belongsTo(Series::class);
 	}
 
 	public function entrants(){
 		return $this->belongsToMany(Player::class, "tournament_standings", "tournament_id", "player_id")
-		->withPivot(["wins", "losses", "ties", "points"]);
+		->withPivot(["wins", "losses", "ties", "points", "tie_breakers"]);
 	}
 }

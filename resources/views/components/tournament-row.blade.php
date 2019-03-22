@@ -15,6 +15,13 @@
 		<em class="text-muted">Unavailable</em>
 		@endif
 	</td>
+	<td class="text-center">
+		@if($tournament->format)
+		{{ $tournament->printFormat() }}
+		@else
+		<em class="text-muted">Unavailable</em>
+		@endif
+	</td>
 	@if($showAdminControls)
 	<td class="text-center action-col">
 		<button type="button" class="btn btn-secondary btn-xs btn-fill btn-block"><i class="fa fa-pencil"></i> Edit</button>

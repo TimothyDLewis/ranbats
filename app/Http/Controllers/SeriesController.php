@@ -63,8 +63,13 @@ class SeriesController extends Controller {
 			return redirect("/series")->with(["feedback" => $feedback]);
 		}
 
+		$showTieBreakers = $series->tournaments->first(function($tournament){
+			return $tournament->format == "round_robin";
+		}) != null;
+
 		return view("series.detail")->with($this->constructWiths([
 			"series" => $series,
+			"showTieBreakers" => $showTieBreakers,
 			"standingsSort" => $standingsSort,
 			"standingsOrder" => $standingsOrder
 		]));

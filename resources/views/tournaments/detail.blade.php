@@ -30,20 +30,23 @@
 					<thead class="thead-light">
 						<tr>
 							<th class="rank-col"></th>
-							<th>Player</th>
-							<th>Points</th>
-							<th>Wins</th>
-							<th>Losses</th>
-							<th>Ties</th>
+							<th class="player-col">Player</th>
+							<th class="sorting-col">Points</th>
+							<th class="sorting-col">Wins</th>
+							@if($tournament->format == "round_robin")
+							<th class="sorting-col">Tie Breakers</th>
+							@endif
+							<th class="sorting-col">Losses</th>
+							<th class="sorting-col">Ties</th>
 							@if($showAdminControls)
-							<th>Actions</th>
+							<th class="action-col">Actions</th>
 							@endif
 						</tr>
 					</thead>
 					<tbody>
 						@if(count($tournament->entrants) == 0)
 						<tr>
-							<td colspan="{{ $showAdminControls ? 7 : 6 }}">
+							<td colspan="{{ $showAdminControls ? ($tournament->format == "round_robin" ? 8 : 7) : ($tournament->format == "round_robin" ? 7 : 6) }}">
 								No Entrants to Display...
 							</td>
 						</tr>

@@ -21,6 +21,7 @@ class CreateTournamentsTable extends Migration {
         	
         	$table->timestamp("date");
         	$table->string("overview_link", 512)->nullable();
+        	$table->enum("format", ["single_elimination", "double_elimination", "round_robin"])->nullable();
 
         	$table->timestamps();
         	$table->softDeletes();

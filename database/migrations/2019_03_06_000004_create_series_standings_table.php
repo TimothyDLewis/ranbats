@@ -19,6 +19,7 @@ class CreateSeriesStandingsTable extends Migration {
         	$table->integer("losses")->nullable();
         	$table->integer("ties")->nullable();
         	$table->integer("points")->nullable();
+        	$table->integer("tie_breakers")->nullable();
         });
     }
 

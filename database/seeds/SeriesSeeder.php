@@ -29,52 +29,58 @@ class SeriesSeeder extends Seeder {
 
 		$this->command->info("Created Series: ".$unistSeason1->name);
 
-		$week1 = Tournament::create([
+		$unistSeason1Week1 = Tournament::create([
 			"series_id" => $unistSeason1->id,
 			"name" => "Week 1",
 			"slug" => $this->slugger->sluggify("Week 1"),
 			"date" => Carbon::parse("2019-02-27"),
-			"overview_link" => "https://challonge.com/LFGCUNISTRB1"
+			"overview_link" => "https://challonge.com/LFGCUNISTRB1",
+			"format" => "round_robin"
 		]);
 
-		$this->command->info("Created Tournament: ".$week1->name);
+		$this->command->info("Created Tournament: ".$unistSeason1Week1->name);
 
-		$week2 = Tournament::create([
+		$unistSeason1Week2 = Tournament::create([
 			"series_id" => $unistSeason1->id,
 			"name" => "Week 2",
 			"slug" => $this->slugger->sluggify("Week 2"),
 			"date" => Carbon::parse("2019-03-06"),
-			"overview_link" => "https://challonge.com/LFGCUNISTRB2"
+			"overview_link" => "https://challonge.com/LFGCUNISTRB2",
+			"format" => "double_elimination"
 		]);
 
-		$this->command->info("Created Tournament: ".$week2->name);
+		$this->command->info("Created Tournament: ".$unistSeason1Week2->name);
 
-		$week3 = Tournament::create([
+		$unistSeason1Week3 = Tournament::create([
 			"series_id" => $unistSeason1->id,
 			"name" => "Week 3",
 			"slug" => $this->slugger->sluggify("Week 3"),
 			"date" => Carbon::parse("2019-03-13"),
-			"overview_link" => "https://challonge.com/LFGCUNISTRB3"
+			"overview_link" => "https://challonge.com/LFGCUNISTRB3",
+			"format" => "double_elimination"
 		]);
 
-		$this->command->info("Created Tournament: ".$week3->name);
+		$this->command->info("Created Tournament: ".$unistSeason1Week3->name);
 
-		$week4 = Tournament::create([
+		$unistSeason1Week4 = Tournament::create([
 			"series_id" => $unistSeason1->id,
 			"name" => "Week 4",
 			"slug" => $this->slugger->sluggify("Week 4"),
 			"date" => Carbon::parse("2019-03-20"),
-			"overview_link" => "https://challonge.com/LFGCUNISTRB4"
+			"overview_link" => "https://challonge.com/LFGCUNISTRB4",
+			"format" => "double_elimination"
 		]);
 
-		$week5 = Tournament::create([
+		$this->command->info("Created Tournament: ".$unistSeason1Week4->name);
+
+		$unistSeason1Week5 = Tournament::create([
 			"series_id" => $unistSeason1->id,
 			"name" => "Week 5",
 			"slug" => $this->slugger->sluggify("Week 5"),
 			"date" => Carbon::parse("2019-03-27")
 		]);
 
-		$this->command->info("Created Tournament: ".$week3->name);
+		$this->command->info("Created Tournament: ".$unistSeason1Week5->name);
 
 		$player = Player::create([
 			"name" => "TENMA"
@@ -82,16 +88,18 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 5,
 					"losses" => 1,
 					"ties" => 0,
-					"points" => 50
-				], $week2->id => [
+					"points" => 50,
+					"tie_breakers" => 1
+				], $unistSeason1Week2->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 20
+					"points" => 20,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -106,26 +114,30 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 5,
 					"losses" => 1,
 					"ties" => 0,
-					"points" => 35
-				], $week2->id => [
+					"points" => 35,
+					"tie_breakers" => 0
+				], $unistSeason1Week2->id => [
 					"wins" => 4,
 					"losses" => 0,
 					"ties" => 0,
-					"points" => 50
-				], $week3->id => [
+					"points" => 50,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 4,
 					"losses" => 0,
 					"ties" => 0,
-					"points" => 50
-				], $week4->id => [
+					"points" => 50,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 4,
 					"losses" => 1,
 					"ties" => 0,
-					"points" => 50
+					"points" => 50,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -140,26 +152,30 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 4,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 20
-				], $week2->id => [
+					"points" => 20,
+					"tie_breakers" => 0
+				], $unistSeason1Week2->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 10
-				], $week3->id => [
+					"points" => 10,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 2,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 10
-				], $week4->id => [
+					"points" => 10,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 20
+					"points" => 20,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -174,26 +190,30 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 3,
 					"losses" => 3,
 					"ties" => 0,
-					"points" => 10
-				], $week2->id => [
+					"points" => 10,
+					"tie_breakers" => 1
+				], $unistSeason1Week2->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
-				], $week3->id => [
+					"points" => 3,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 4,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 20
-				], $week4->id => [
+					"points" => 20,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 2,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 10
+					"points" => 10,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -208,11 +228,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 3,
 					"losses" => 3,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -227,11 +248,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 1,
 					"losses" => 5,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -246,11 +268,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week1->id => [
+				$unistSeason1Week1->id => [
 					"wins" => 0,
 					"losses" => 6,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -265,21 +288,24 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 35
-				], $week3->id => [
+					"points" => 35,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 35
-				], $week4->id => [
+					"points" => 35,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 4,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 35
+					"points" => 35,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -294,21 +320,24 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
-				], $week3->id => [
+					"points" => 3,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 2,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 1
-				], $week4->id => [
+					"points" => 1,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -323,21 +352,24 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 1
-				], $week3->id => [
+					"points" => 1,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
-				], $week4->id => [
+					"points" => 3,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
+					"points" => 3,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -352,21 +384,24 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 1
-				], $week3->id => [
+					"points" => 1,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 2,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 1
-				], $week4->id => [
+					"points" => 1,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -381,11 +416,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -400,16 +436,18 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
-				], $week4->id => [
+					"points" => 0,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -424,21 +462,24 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
-				], $week3->id => [
+					"points" => 0,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 3,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
-				], $week4->id => [
+					"points" => 3,
+					"tie_breakers" => 0
+				], $unistSeason1Week4->id => [
 					"wins" => 2,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 3
+					"points" => 3,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -453,11 +494,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -472,16 +514,18 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week2->id => [
+				$unistSeason1Week2->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
-				], $week3->id => [
+					"points" => 0,
+					"tie_breakers" => 0
+				], $unistSeason1Week3->id => [
 					"wins" => 1,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -496,11 +540,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week3->id => [
+				$unistSeason1Week3->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -515,11 +560,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week3->id => [
+				$unistSeason1Week3->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -532,11 +578,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week3->id => [
+				$unistSeason1Week3->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -551,11 +598,12 @@ class SeriesSeeder extends Seeder {
 
 		$player->seriesStandings = collect([
 			$unistSeason1->id => collect([
-				$week3->id => [
+				$unistSeason1Week3->id => [
 					"wins" => 0,
 					"losses" => 2,
 					"ties" => 0,
-					"points" => 0
+					"points" => 0,
+					"tie_breakers" => 0
 				]
 			])
 		]);
@@ -575,7 +623,8 @@ class SeriesSeeder extends Seeder {
 					"wins" => $tournamentStandings->sum("wins"),
 					"losses" => $tournamentStandings->sum("losses"),
 					"ties" => $tournamentStandings->sum("ties"),
-					"points" => $tournamentStandings->sum("points")
+					"points" => $tournamentStandings->sum("points"),
+					"tie_breakers" => $tournamentStandings->sum("tie_breakers")
 				]);
 			}
 		}

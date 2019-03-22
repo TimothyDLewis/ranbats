@@ -47,7 +47,15 @@
 
 		.action-col {
 			width: 1%;
-			min-width: 150px;
+			min-width: 125px;
+		}
+	
+		.player-col {
+			width: 24%;
+		}
+
+		.sorting-col {
+			width: 12%;
 		}
 	</style>
 	@yield("styles")

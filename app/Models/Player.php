@@ -24,6 +24,6 @@ class Player extends Model {
 
     public function tournaments(){
     	return $this->belongsToMany(Tournament::class, "tournament_standings", "player_id", "tournament_id")
-    	->withPivot(["wins", "losses", "ties", "points"]);
+    	->withPivot(["wins", "losses", "ties", "points", "tie_breakers"]);
     }
 }

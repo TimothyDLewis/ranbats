@@ -15,6 +15,18 @@ class Series extends Model {
 	protected $table = "series";
 	protected $primaryKey = "id";
 
+	public function returnStandingsTabs($showTieBreakers){
+		$standingsTabs = ["points", "wins", "losses", "ties"];
+
+		if($showTieBreakers){
+			$standingsTabs = ["points", "wins", "tie_breakers", "losses", "ties"];
+		} else {
+			$standingsTabs = ["points", "wins", "losses", "ties"];
+		}
+
+		return $standingsTabs;
+	}
+
 	public function getStartDateAttribute(){
 		if(count($this->tournaments) != 0){
 			return Carbon::parse($this->tournaments->first()->date);
@@ -53,6 +65,6 @@ class Series extends Model {
 
 	public function entrants(){
 		return $this->belongsToMany(Player::class, "series_standings", "series_id", "player_id")
-		->withPivot(["wins", "losses", "ties", "points"]);
+		->withPivot(["wins", "losses", "ties", "points", "tie_breakers"]);
 	}
 }

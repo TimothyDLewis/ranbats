@@ -14,6 +14,11 @@
 	<td class="text-center">
 		<span class="badge badge-pill badge-light">{{ $player->pivot->wins }}</span>
 	</td>
+	@if($tournament->format == "round_robin")
+	<td class="text-center">
+		<span class="badge badge-pill badge-light">{{ $player->pivot->tie_breakers }}</span>
+	</td>
+	@endif
 	<td class="text-center">
 		<span class="badge badge-pill badge-light">{{ $player->pivot->losses }}</span>
 	</td>

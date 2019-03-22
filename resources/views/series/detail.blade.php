@@ -33,6 +33,7 @@
 							<th>Entrants</th>
 							<th>Date</th>
 							<th>Overview</th>
+							<th>Format</th>
 							@if($showAdminControls)
 							<th>Actions</th>
 							@endif
@@ -41,7 +42,7 @@
 					<tbody>
 						@if(count($series->tournaments) == 0)
 						<tr>
-							<td colspan="{{ $showAdminControls ? 5 : 4 }}">
+							<td colspan="{{ $showAdminControls ? 6 : 5 }}">
 								No Tournaments to Display...
 							</td>
 						</tr>
@@ -70,11 +71,11 @@
 						<input type="hidden" name="standingsOrder"/>
 					</form>
 					<ul class="nav nav-tabs nav-justified standingsTabs">
-						@foreach(["points", "wins", "losses", "ties"] AS $standingsTab)
+						@foreach($series->returnStandingsTabs($showTieBreakers) AS $standingsTab)
 						<li class="nav-item" data-sort="{{ $standingsTab }}">
 							@if($standingsSort == $standingsTab)
 							<a class="nav-link active" href="#">
-								{{ ucfirst($standingsTab) }}
+								{{ ucwords(str_replace("_", " ", $standingsTab)) }}
 								@if($standingsOrder == "ASC")
 								<span class="fa fa-caret-up"></span>
 								@else
@@ -82,7 +83,7 @@
 								@endif
 							</a> 
 							@else
-							<a class="nav-link" href="#">{{ ucfirst($standingsTab) }}</a> 
+							<a class="nav-link" href="#">{{ ucwords(str_replace("_", " ", $standingsTab)) }}</a> 
 							@endif
 						</li>
 						@endforeach
@@ -90,8 +91,8 @@
 					<thead class="thead-light">
 						<tr>
 							<th class="rank-col"></th>
-							<th>Player</th>
-							<th>{{ ucfirst($standingsSort) }}</th>
+							<th class="player-col">Player</th>
+							<th class="sorting-col">{{ ucwords(str_replace("_", " ", $standingsSort)) }}</th>
 							@foreach($series->tournaments AS $tournament)
 							<th>{{ $tournament->name }}</th>
 							@endforeach
