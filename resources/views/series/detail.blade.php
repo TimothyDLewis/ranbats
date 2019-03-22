@@ -107,7 +107,7 @@
 						@else
 						<?php $rank = 0; $previous = null; ?>
 						@foreach($series->entrants AS $entrant)
-						<?php if($previous !== $entrant->pivot->points){ $rank++; } $previous = $entrant->pivot->points; ?>
+						<?php if($previous !== $entrant->pivot->{$standingsSort}){ $rank++; } $previous = $entrant->pivot->{$standingsSort}; ?>
 						@include("components.standings-row", ["player" => $entrant, "column" => $standingsSort])
 						@endforeach
 						@endif
